@@ -18,4 +18,15 @@ class Lesson extends Model
     {
         return $this->belongsTo(Chapter::class);
     }
+
+    /**
+     * Get the formatted duration of the lesson.
+     *
+     * @return string
+     */
+    public function getFormattedDurationAttribute()
+    {
+        $formatted_duration = readableDuration($this->duration);
+        return $formatted_duration;
+    }
 }

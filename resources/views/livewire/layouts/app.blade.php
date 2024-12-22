@@ -58,7 +58,6 @@
 
     <!-- Livewire Scripts -->
     @livewireScripts
-    <script src="https://cdn.jsdelivr.net/npm/@alpinejs"></script>
 </body>
 
 </html>

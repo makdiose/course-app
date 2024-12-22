@@ -36,17 +36,6 @@ class CoursesTable extends Component
         }
     }
 
-    public function toggleFavorite($courseId)
-    {
-        if (!auth()->check()) {
-            return redirect()->route('login');
-        }
-
-        $course = Course::find($courseId);
-        if ($course) {
-            auth()->user()->favorites()->toggle($courseId);
-        }
-    }
 
     public function clearFilters()
     {

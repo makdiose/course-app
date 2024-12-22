@@ -22,20 +22,26 @@ new class extends Component
         <div class="flex items-center space-x-8">
             <!-- Brand Name -->
             <a href="{{ route('home') }}" class="text-2xl font-bold text-gray-800">
-                Courses
+            Portal
             </a>
 
             <!-- Nav Links -->
-            <div class="flex space-x-4"> </div>
+            <div class="flex space-x-4"> 
+                <a wire:navigate href="{{ route('home') }}" class="text-gray-700 hover:text-gray-900 font-medium">
+                   Courses
+                </a>
+            
+            </div>
         </div>
 
         <!-- Right side (User) -->
         <div>
             @auth
-                <span class="mr-4">Hi, {{ auth()->user()->name }}</span>
+                <span class="hidden md:inline mr-4">Hi, {{ auth()->user()->name }}</span>
+                
                 <form method="POST" action="{{ route('logout') }}" class="inline">
                     @csrf
-                    <button type="submit" class="text-gray-700 hover:text-gray-900 font-medium">
+                    <button type="submit" class="text-gray-700 hover:text-gray-900 font-medium underline">
                         Logout
                     </button>
                 </form>
@@ -43,7 +49,7 @@ new class extends Component
                 <a wire:navigate href="{{ route('login') }}" class="text-gray-700 hover:text-gray-900 font-medium">
                     Login
                 </a>
-                <span class="mx-2 text-gray-500">/</span>
+                <span class="mx-2 text-black-500">/</span>
                 <a wire:navigate href="{{ route('register') }}" class="text-gray-700 hover:text-gray-900 font-medium">
                     Register
                 </a>

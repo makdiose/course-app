@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Faker\Factory as Faker;
 
 class AppSeeder extends Seeder
 {
@@ -19,17 +20,17 @@ class AppSeeder extends Seeder
         
         // Sample categories with colors
         $categories = [
-            ['name' => 'Technology', 'color' => '#8B0000'],
-            ['name' => 'Business Skills', 'color' => '#00008B'],
-            ['name' => 'Design', 'color' => '#4B0082'],
-            ['name' => 'Marketing', 'color' => '#006400'],
-            ['name' => 'Soft Skills', 'color' => '#8B4513'],
-            ['name' => 'Productivity', 'color' => '#2F4F4F'],
-            ['name' => 'Technical', 'color' => '#5F9EA0'],
-            ['name' => 'Office', 'color' => '#2C2C2C'],
-            ['name' => 'Health', 'color' => '#FF0000'],
-            ['name' => 'Finance', 'color' => '#FFA500'],
-            ['name' => 'Education', 'color' => '#FFFF00'],
+            ['name' => 'Technology', 'color' => '#2196F3'], // Blue
+            ['name' => 'Business Skills', 'color' => '#4CAF50'], // Green
+            ['name' => 'Design', 'color' => '#FFC107'], // Yellow
+            ['name' => 'Marketing', 'color' => '#E91E63'], // Pink
+            ['name' => 'Soft Skills', 'color' => '#9C27B0'], // Purple
+            ['name' => 'Productivity', 'color' => '#009688'], // Teal
+            ['name' => 'Technical', 'color' => '#03A9F4'], // Light Blue
+            ['name' => 'Office', 'color' => '#607D8B'], // Grey
+            ['name' => 'Health', 'color' => '#F44336'], // Red
+            ['name' => 'Finance', 'color' => '#FF9800'], // Orange
+            ['name' => 'Education', 'color' => '#9E9E9E'], // Grey
         ];
     
         // Insert categories
@@ -238,26 +239,30 @@ class AppSeeder extends Seeder
                 ]);
             }
     
-            // Create chapters and lessons
-            for ($chapterIndex = 1; $chapterIndex <= 3; $chapterIndex++) {
+      
+
+            $faker = Faker::create();
+            
+            for ($chapterIndex = 1; $chapterIndex <= 5; $chapterIndex++) {
                 $chapterId = DB::table('chapters')->insertGetId([
                     'course_id' => $courseId,
-                    'title' => "Chapter $chapterIndex",
+                    'title' => "Chapter $chapterIndex - " . ucwords(implode(' ', $faker->words(rand(4, 5)))), 
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
-    
+            
                 // Create lessons for each chapter
-                for ($lessonIndex = 1; $lessonIndex <= 3; $lessonIndex++) {
+                for ($lessonIndex = 1; $lessonIndex <= 4; $lessonIndex++) {
                     DB::table('lessons')->insert([
                         'chapter_id' => $chapterId,
-                        'title' => "Lesson $lessonIndex for Chapter $chapterIndex",
+                        'title' => "Lesson $lessonIndex - " . ucwords(implode(' ', $faker->words(rand(4, 5)))),
                         'duration' => rand(300, 900), // Random duration between 5 to 15 minutes
                         'created_at' => now(),
                         'updated_at' => now(),
                     ]);
                 }
             }
+            
         }
 
 

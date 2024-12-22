@@ -39,10 +39,10 @@ class Course extends Model
     /**
      * Get the total duration of all lessons in the course.
      */
-    public function getTotalDurationAttribute()
+    public function getFormattedDurationAttribute()
     {
-        // Sum the duration of all lessons associated with this course
-        return $this->chapters->flatMap->lessons->sum('duration');
+        $duration = $this->chapters->flatMap->lessons->sum('duration');
+        return readableDuration($duration);
     }
 }
 
